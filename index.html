@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <meta id="theme-color-meta" name="theme-color" content="#0ea5e9">
+    <title>Электронный дневник</title>
+    <meta name="description" content="Мобильный электронный дневник с оценками по 10-балльной шкале">
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./assets/styles.css">
+    <script defer src="./assets/app.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-left">
+        <h1 class="app-title">Электронный дневник</h1>
+        <span class="app-subtitle" id="studentShort"></span>
+      </div>
+      <div class="header-actions">
+        <button id="themeToggle" class="icon-button" aria-label="Переключить тему" aria-pressed="false" title="Тема">
+          <span class="icon" aria-hidden="true">☀️</span>
+        </button>
+      </div>
+    </header>
+
+    <nav class="tabbar" role="tablist" aria-label="Навигация">
+      <button class="tab active" role="tab" aria-selected="true" aria-controls="screen-diary" id="tab-diary" data-screen="diary">
+        Дневник
+      </button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="screen-subjects" id="tab-subjects" data-screen="subjects">
+        Предметы
+      </button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="screen-profile" id="tab-profile" data-screen="profile">
+        Профиль
+      </button>
+    </nav>
+
+    <main class="screens">
+      <section id="screen-diary" class="screen" role="tabpanel" aria-labelledby="tab-diary">
+        <div id="diaryList" class="list"></div>
+      </section>
+      <section id="screen-subjects" class="screen hidden" role="tabpanel" aria-labelledby="tab-subjects">
+        <div id="subjectsList" class="grid"></div>
+      </section>
+      <section id="screen-profile" class="screen hidden" role="tabpanel" aria-labelledby="tab-profile">
+        <div class="profile">
+          <div class="profile-card card">
+            <h2>Ученик</h2>
+            <div class="profile-row"><span>ФИО</span><strong id="studentName"></strong></div>
+            <div class="profile-row"><span>Класс</span><strong id="studentClass"></strong></div>
+          </div>
+          <div class="profile-card card">
+            <h2>Итоги</h2>
+            <div class="profile-row"><span>Средний балл</span><strong id="avgAll"></strong></div>
+            <div class="profile-row"><span>Всего оценок</span><strong id="countAll"></strong></div>
+          </div>
+          <div class="profile-actions">
+            <button id="resetData" class="button" type="button">Сбросить данные</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>Демо-данные. Темная/светлая тема. Развертывание через GitHub Pages.</small>
+    </footer>
+  </body>
+  </html>
+

@@ -1,0 +1,207 @@
+/*
+  Mobile-first styles with light/dark themes via CSS variables.
+  Portrait-oriented layout; responsive up to small tablets.
+*/
+
+:root {
+  color-scheme: light dark;
+  --bg: #0b1016;
+  --bg-elev: #0f1720;
+  --surface: #ffffff;
+  --surface-2: #f6f8fa;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #0ea5e9; /* sky-500 */
+  --primary-contrast: #ffffff;
+  --accent: #22c55e; /* green-500 */
+  --danger: #ef4444; /* red-500 */
+  --warning: #f59e0b; /* amber-500 */
+  --radius: 14px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.10);
+  --content-max: 720px;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1016;
+  --bg-elev: #0f1720;
+  --surface: #0f1720;
+  --surface-2: #151c26;
+  --text: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border: #243142;
+  --primary: #38bdf8; /* sky-400 */
+  --primary-contrast: #051018;
+  --accent: #22d36a;
+  --danger: #f87171;
+  --warning: #fbbf24;
+}
+
+/* CSS Reset (trimmed) */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Ubuntu, Cantarell, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(180deg, var(--bg-elev), rgba(0,0,0,0));
+  backdrop-filter: saturate(140%) blur(6px);
+}
+.header-left { display: flex; flex-direction: column; gap: 2px; }
+.app-title { font-size: 18px; line-height: 1.2; margin: 0; }
+.app-subtitle { font-size: 12px; color: var(--text-muted); }
+.header-actions { display: flex; align-items: center; gap: 6px; }
+
+.tabbar {
+  position: sticky;
+  top: 60px;
+  z-index: 40;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 0 auto;
+  padding: 8px 16px 6px;
+  max-width: var(--content-max);
+  background: linear-gradient(180deg, var(--bg), rgba(0,0,0,0));
+}
+.tab {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 10px 8px;
+  border-radius: 999px;
+  font-size: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.tab.active {
+  border-color: transparent;
+  background: var(--primary);
+  color: var(--primary-contrast);
+}
+
+.screens {
+  margin: 0 auto;
+  padding: 8px 16px 64px;
+  max-width: var(--content-max);
+}
+
+.hidden { display: none; }
+
+.list { display: flex; flex-direction: column; gap: 12px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+@media (min-width: 560px) {
+  .grid { grid-template-columns: 1fr 1fr 1fr; }
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.day {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.day-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 2px 2px 2px 0;
+  color: var(--text-muted);
+}
+.day-title { font-weight: 600; }
+
+.lesson {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 8px;
+  border-radius: 12px;
+  background: var(--surface-2);
+}
+.lesson-title { font-weight: 600; }
+.lesson-sub { font-size: 12px; color: var(--text-muted); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.badge.good { background: rgba(34,197,94,0.15); color: #16a34a; }
+.badge.ok { background: rgba(234,179,8,0.15); color: #b45309; }
+.badge.bad { background: rgba(239,68,68,0.15); color: #b91c1c; }
+
+.row {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+}
+
+.subject-card {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.subject-name { font-weight: 600; }
+.subject-avg { font-size: 22px; font-weight: 800; }
+.meter { height: 8px; background: var(--surface-2); border-radius: 999px; overflow: hidden; }
+.meter > span { display: block; height: 100%; background: var(--accent); }
+
+.profile { display: flex; flex-direction: column; gap: 12px; }
+.profile-card { display: flex; flex-direction: column; gap: 8px; }
+.profile-row { display: flex; align-items: center; justify-content: space-between; color: var(--text-muted); }
+.profile-actions { display: flex; justify-content: center; padding: 6px; }
+
+.button {
+  appearance: none;
+  background: var(--primary);
+  color: var(--primary-contrast);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+.icon-button {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+.icon { font-size: 16px; }
+
+.app-footer {
+  margin: 24px auto 48px;
+  max-width: var(--content-max);
+  color: var(--text-muted);
+  text-align: center;
+  font-size: 12px;
+  padding: 0 16px;
+}
+
